@@ -15,28 +15,29 @@ trait TimeKeeper
      * @param string $startDateColumn
      * @param string $endDateColumn
      */
-    function scopeNoOverlap($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time') {
+    function scopeNoOverlap($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
+    {
 
-        $query->where(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+        $query->where(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
             $q->where($startDateColumn, '<=', $startDate)
               ->where($endDateColumn, '>', $startDate);
         })
-            ->orWhere(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
-                $q->where($startDateColumn, '>=', $startDate)
-                  ->where($endDateColumn, '<=', $endDate);
-            })
-            ->orWhere(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
-                $q->where($startDateColumn, '>', $startDate)
-                  ->where($endDateColumn, '>', $startDate)
-                  ->where($endDateColumn, '>=', $endDate)
-                  ->where($startDateColumn, '<', $endDate);
-            })
-            ->orWhere(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
-                $q->where($startDateColumn, '<', $startDate)
-                  ->where($endDateColumn, '>', $endDate);
-            });
+              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                  $q->where($startDateColumn, '>=', $startDate)
+                    ->where($endDateColumn, '<=', $endDate);
+              })
+              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                  $q->where($startDateColumn, '>', $startDate)
+                    ->where($endDateColumn, '>', $startDate)
+                    ->where($endDateColumn, '>=', $endDate)
+                    ->where($startDateColumn, '<', $endDate);
+              })
+              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                  $q->where($startDateColumn, '<', $startDate)
+                    ->where($endDateColumn, '>', $endDate);
+              });
     }
-    
+
     public function scopeAfter($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($endDateColumn, '<', $startDate);
@@ -46,7 +47,7 @@ trait TimeKeeper
     {
         $query->where($endDateColumn, $startDate);
     }
-    
+
     public function scopeStartInside($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($endDateColumn, '>', $startDate);
@@ -112,33 +113,60 @@ trait TimeKeeper
 
     public function scopeIsSamePeriod($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
+
         $this->scopeExactMatch($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time');
     }
 
     public function scopeHasInside($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
-        $this->scopeEnclosingStartTouching($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeEnclosing($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeEndTouching($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeExactMatch($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
+        $query->where(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+            $this->scopeEnclosingStartTouching($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+        })
+              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                  $this->scopeEnclosing($, $startDate, $endDate, $startDateColumn, $endDateColumn);
+              })
+              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                  $this->scopeEndTouching($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+              })
+              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                  $this->scopeExactMatch($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+              });
     }
 
     public function scopeOverlapsWith($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
-        $this->scopeHasInside($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeStartInside($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeInsideStartTouching($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeInside($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeInsideEndTouching($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeEndInside($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
+        $query->where(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+            $this->scopeHasInside($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+        })
+            ->orWhere(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                $this->scopeStartInside($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+            })
+            ->orWhere(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                $this->scopeInsideStartTouching($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+            })
+            ->orWhere(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                $this->scopeInside($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+            })
+            ->orWhere(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                $this->scopeInsideEndTouching($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+            })
+            ->orWhere(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                $this->scopeEndInside($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+            });
 
     }
 
     public function scopeIntersectsWith($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
-        $this->scopeOverlapsWith($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeStartTouching($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
-        $this->scopeEndTouching($query, $startDate, $endDate, $startDateColumn, $endDateColumn);
+        $query->where(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+            $this->scopeOverlapsWith($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+        })
+              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                  $this->scopeStartTouching($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+              })
+              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
+                  $this->scopeEndTouching($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
+              });
     }
 
 }
