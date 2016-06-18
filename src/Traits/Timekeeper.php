@@ -49,7 +49,8 @@ trait TimeKeeper
 
     public function scopeStartInside($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
-        $query->where($endDateColumn, '>', $startDate);
+        $query->where($endDateColumn, '>', $startDate)
+              ->where($startDateColumn, '<', $startDate);
     }
 
     public function scopeInsideStartTouching($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
@@ -97,7 +98,8 @@ trait TimeKeeper
 
     public function scopeEndInside($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
-        $query->where($startDateColumn, '<', $endDate);
+        $query->where($startDateColumn, '<', $endDate)
+              ->where($endDateColumn, '>', $endDate);
     }
 
     public function scopeEndTouching($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
