@@ -5,38 +5,6 @@ namespace Midnite81\TimeKeeper\Traits;
 trait TimeKeeper
 {
 
-    /**
-     * Checks for overlaps
-     *
-     * @param $query
-     * @param $startDate
-     * @param $endDate
-     * @param string $startDateColumn
-     * @param string $endDateColumn
-     */
-    function scopeNoOverlap($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
-    {
-
-        $query->where(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
-            $q->where($startDateColumn, '<=', $startDate)
-              ->where($endDateColumn, '>', $startDate);
-        })
-              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
-                  $q->where($startDateColumn, '>=', $startDate)
-                    ->where($endDateColumn, '<=', $endDate);
-              })
-              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
-                  $q->where($startDateColumn, '>', $startDate)
-                    ->where($endDateColumn, '>', $startDate)
-                    ->where($endDateColumn, '>=', $endDate)
-                    ->where($startDateColumn, '<', $endDate);
-              })
-              ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
-                  $q->where($startDateColumn, '<', $startDate)
-                    ->where($endDateColumn, '>', $endDate);
-              });
-    }
-
     public function scopeAfter($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($endDateColumn, '<', $startDate);
