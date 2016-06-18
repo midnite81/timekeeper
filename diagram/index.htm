@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Period Relationships</title>
+    <style type="text/css">
+        .wrapper {
+            font-family: Arial;
+            font-size: 11pt;
+            color: #939393;
+            margin: auto;
+        }
+        .table {
+            display: table;
+            margin: auto;
+            width: 860px;
+        }
+
+        .row {
+            display: table-row;
+        }
+
+        .column {
+            display: table-cell;
+            vertical-align: top;
+            border-left: 1px solid #d6d6d6;
+            border-top: 1px solid #d6d6d6;
+            height: 24px;
+            padding: 5px;
+            position: relative;
+        }
+        .column-right {
+            border-right: 1px solid #d6d6d6;
+        }
+        .column-bottom {
+            border-bottom: 1px solid #d6d6d6;
+        }
+        .center {
+            text-align: center;
+        }
+        img {
+            width: 15px;
+        }
+        .before, .during, .after {
+            width: 100px;
+        }
+        .during {
+            border-left: 1px dashed #ababab;
+            border-right: 1px dashed #ababab;
+        }
+        .after {
+            border-left: none;
+        }
+        .time {
+            position: absolute;
+            width: 109px;
+            top: 6px;
+            left: 0px;
+            height: 18px;
+            border: 1px solid #9bc2cf;
+            background-color: #ADD8E6;
+            -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+            -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+            box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+        }
+        .time-alt {
+            background-color: #FFFFCC;
+            border: #e5e5b7 1px solid;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="table">
+        <div class="row">
+            <div class="column title"></div>
+            <div class="column before center"></div>
+            <div class="column during center"><div class="time"></div></div>
+            <div class="column after center"></div>
+            <div class="column title-right center">Is Same<br>Period</div>
+            <div class="column title-right center">Has<br>Inside</div>
+            <div class="column title-right center">Overlaps<br>With</div>
+            <div class="column column-right title-right center">Intersects<br>With</div>
+        </div>
+
+        <div class="row">
+            <div class="column title">After</div>
+            <div class="column before"><div class="time time-alt" style="width: 50px; left: 30px"></div></div>
+            <div class="column during"></div>
+            <div class="column after"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column column-right title-right center"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">Start Touching</div>
+            <div class="column before"><div class="time time-alt" style="width: 79px; left: 30px"></div></div>
+            <div class="column during"></div>
+            <div class="column after"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">Start Inside</div>
+            <div class="column before"><div class="time time-alt" style="width: 99px; left: 30px"></div></div>
+            <div class="column during"></div>
+            <div class="column after"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">Start Inside Touching</div>
+            <div class="column before"></div>
+            <div class="column during"><div class="time time-alt" style="width: 150px; left: 0px"></div></div>
+            <div class="column after"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">Enclosing Start Touching</div>
+            <div class="column before"></div>
+            <div class="column during"><div class="time time-alt" style="width: 79px; left: 0px"></div></div>
+            <div class="column after"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">Enclosing</div>
+            <div class="column before"></div>
+            <div class="column during"><div class="time time-alt" style="width: 50px; left: 30px"></div></div>
+            <div class="column after"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">Enclosing End Touching</div>
+            <div class="column before"></div>
+            <div class="column during"><div class="time time-alt" style="width: 79px; left: 30px"></div></div>
+            <div class="column after"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">Exact Match</div>
+            <div class="column before"></div>
+            <div class="column during"><div class="time time-alt" style="width: 108px; left: 0px"></div></div>
+            <div class="column after"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">Inside</div>
+            <div class="column before"></div>
+            <div class="column during"><div class="time time-alt" style="width: 269px; left: -79px"></div></div>
+            <div class="column after"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">Inside End Touching</div>
+            <div class="column before"></div>
+            <div class="column during"><div class="time time-alt" style="width: 186px; left: -79px"></div></div>
+            <div class="column after"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">End Inside</div>
+            <div class="column before"></div>
+            <div class="column during"></div>
+            <div class="column after"><div class="time time-alt" style="width: 109px; left: -30px"></div></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"><img src="tick.png"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column title">End Touching</div>
+            <div class="column before"></div>
+            <div class="column during"></div>
+            <div class="column after"><div class="time time-alt" style="width: 80px; left: 0px"></div></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column title-right center"></div>
+            <div class="column column-right title-right center"><img src="tick.png"></div>
+        </div>
+
+        <div class="row">
+            <div class="column column-bottom title">Before</div>
+            <div class="column column-bottom before"></div>
+            <div class="column column-bottom during"></div>
+            <div class="column column-bottom after"><div class="time time-alt" style="width: 50px; left: 30px"></div></div>
+            <div class="column column-bottom title-right center"></div>
+            <div class="column column-bottom title-right center"></div>
+            <div class="column column-bottom title-right center"></div>
+            <div class="column column-bottom column-right title-right center"></div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+</body>
+</html>
