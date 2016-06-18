@@ -41,3 +41,7 @@ Then reference it in your controller or service etc;
         ...
 
     }
+
+# Relationship Diagram
+
+![Relationship Diagram](https://raw.githubusercontent.com/midnite81/timekeeper/master/diagram/relationships.png)
