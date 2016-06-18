@@ -1,7 +1,6 @@
 <?php
 namespace Midnite81\TimeKeeper\Traits;
 
-use Carbon\Carbon;
 
 trait TimeKeeper
 {
@@ -123,7 +122,7 @@ trait TimeKeeper
             $this->scopeEnclosingStartTouching($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
         })
               ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
-                  $this->scopeEnclosing($, $startDate, $endDate, $startDateColumn, $endDateColumn);
+                  $this->scopeEnclosing($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
               })
               ->orWhere(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
                   $this->scopeEndTouching($q, $startDate, $endDate, $startDateColumn, $endDateColumn);
