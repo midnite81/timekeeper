@@ -3,6 +3,11 @@ A series of scopes for Laravel Models to do with Time Management.
 
 Please note: This project is a work in progress.
 
+# Relationship Diagram
+
+![Relationship Diagram](https://raw.githubusercontent.com/midnite81/timekeeper/master/diagram/relationships.png)
+
+
 #Installation
 
 This package requires PHP 5.6+ and Laravel 5.
@@ -50,7 +55,3 @@ All scopes take the following arguments
 * End DateTime (yyyy-mm-dd hh:ii)
 * Start Time Column in Database (optional, defaults to start_time)
 * End Time Column in Database (optional, defaults to end_time)
-
-# Relationship Diagram
-
-![Relationship Diagram](https://raw.githubusercontent.com/midnite81/timekeeper/master/diagram/relationships.png)

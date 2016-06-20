@@ -5,28 +5,73 @@ namespace Midnite81\TimeKeeper\Traits;
 trait TimeKeeper
 {
 
+    /**
+     * After Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeAfter($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($endDateColumn, '<', $startDate);
     }
 
+    /**
+     * Start Touching Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeStartTouching($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($endDateColumn, $startDate);
     }
 
+    /**
+     * Start Inside Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeStartInside($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($endDateColumn, '>', $startDate)
               ->where($startDateColumn, '<', $startDate);
     }
 
+    /**
+     * Inside Start Touching Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeInsideStartTouching($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, $startDate)
               ->where($endDateColumn, '<', $endDate);
     }
 
+    /**
+     * Enclosing Start Touching Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeEnclosingStartTouching($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, $startDate)
@@ -34,58 +79,148 @@ trait TimeKeeper
     }
 
 
+    /**
+     * Enclosing Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeEnclosing($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, '<', $startDate)
               ->where($endDateColumn, '>', $endDate);
     }
 
+    /**
+     * Enclosing End Touching Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeEnclosingEndTouching($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, '<', $startDate)
               ->where($endDateColumn, $endDate);
     }
 
+    /**
+     * Exact Match Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeExactMatch($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, $startDate)
               ->where($endDateColumn, $endDate);
     }
 
+    /**
+     * Inside Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeInside($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, '<', $startDate)
               ->where($endDateColumn, '>', $endDate);
     }
 
+    /**
+     * Inside End Touching Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeInsideEndTouching($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, '<', $startDate)
               ->where($endDateColumn, $endDate);
     }
 
+    /**
+     * End Inside Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeEndInside($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, '<', $endDate)
               ->where($endDateColumn, '>', $endDate);
     }
 
+    /**
+     * End Touching Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeEndTouching($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, $endDate);
     }
 
+    /**
+     * Before Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeBefore($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where($startDateColumn, '>', $endDate);
     }
 
+    /**
+     * Is Same Period Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeIsSamePeriod($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
 
         $this->scopeExactMatch($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time');
     }
 
+    /**
+     * Has Inside Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeHasInside($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
@@ -102,6 +237,15 @@ trait TimeKeeper
               });
     }
 
+    /**
+     * Overlaps with Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeOverlapsWith($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where(function($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
@@ -125,6 +269,15 @@ trait TimeKeeper
 
     }
 
+    /**
+     * Intersects With Scope
+     *
+     * @param $query
+     * @param $startDate
+     * @param $endDate
+     * @param string $startDateColumn
+     * @param string $endDateColumn
+     */
     public function scopeIntersectsWith($query, $startDate, $endDate, $startDateColumn = 'start_time', $endDateColumn = 'end_time')
     {
         $query->where(function ($q) use ($startDate, $endDate, $startDateColumn, $endDateColumn) {
