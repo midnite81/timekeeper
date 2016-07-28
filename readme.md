@@ -1,4 +1,4 @@
-# TimeKeeper [![Latest Stable Version](https://poser.pugx.org/midnite81/timekeeper/version)](https://packagist.org/packages/midnite81/timekeeper) [![Total Downloads](https://poser.pugx.org/midnite81/timekeeper/downloads)](https://packagist.org/packages/midnite81/timekeeper) [![Latest Unstable Version](https://poser.pugx.org/midnite81/timekeeper/v/unstable)](https://packagist.org/packages/midnite81/timekeeper) [![License](https://poser.pugx.org/midnite81/timekeeper/license.svg)](https://packagist.org/packages/midnite/timekeeper)
+# TimeKeeper [![Latest Stable Version](https://poser.pugx.org/midnite81/timekeeper/version)](https://packagist.org/packages/midnite81/timekeeper) [![Total Downloads](https://poser.pugx.org/midnite81/timekeeper/downloads)](https://packagist.org/packages/midnite81/timekeeper) [![Latest Unstable Version](https://poser.pugx.org/midnite81/timekeeper/v/unstable)](https://packagist.org/packages/midnite81/timekeeper) [![License](https://poser.pugx.org/midnite81/timekeeper/license.svg)](https://packagist.org/packages/midnite81/timekeeper)
 
 A series of scopes for Laravel Models to do with Time Management.
 
