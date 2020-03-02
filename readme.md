@@ -9,7 +9,7 @@ Please note: This project is a work in progress.
 ![Relationship Diagram](https://raw.githubusercontent.com/midnite81/timekeeper/master/diagram/relationships.png)
 
 
-#Installation
+# Installation
 
 This package requires PHP 5.6+ and Laravel 5.
 
@@ -19,7 +19,7 @@ To install through composer include the package in your `composer.json`.
 
 Run `composer install` or `composer update` to download the dependencies or you can run `composer require midnite81/timekeeper`.
 
-##Laravel 5 Integration
+## Laravel 5 Integration
 
 There is no service provider to install. Simply include the trait to the model you need to use it on.
 
